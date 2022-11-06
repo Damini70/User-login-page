@@ -7,8 +7,11 @@ import {useState} from "react";
 
 
 function App() {
-  const [user,setLoginUser]=useState({});
-  console.log(user);
+  const [user,setLoginUser]=useState("");
+ const childToParent=(childdata)=>{
+    setLoginUser(childdata);
+ }
+//  console.log(user);
 
   return (
    
@@ -21,8 +24,8 @@ function App() {
               user? <Homepage setLoginUser={setLoginUser} /> : <Login setLoginUser={setLoginUser}/>
             }
           </Route> */}
-          <Route exact path="/login" element={<Login setLoginUser={setLoginUser}/>}/>
-          <Route path="/home" element={<Homepage setLoginUser={setLoginUser}/>}/>
+          <Route exact path="/login" element={<Login childToParent={childToParent}/>}/>
+          <Route path="/home" element={<Homepage user={user}/>}/>
         </Routes>
 
       </Router>
